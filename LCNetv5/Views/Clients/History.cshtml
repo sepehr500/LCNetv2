@@ -1,0 +1,115 @@
+﻿@model List<LCNetv5.Models.Loan>
+@using LCNetv5.Classes
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>History</title>
+</head>
+<body>
+    <h2 class="text-center">@Model.First().Program.Client.getFullName()</h2>
+    <div class="panel-group">
+        @foreach (var item in Model)
+        {
+
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Program Name</th>
+                    <td>@item.Program.ProgName</td>
+                </tr>
+                <tr>
+                    <th>Loan Amount</th>
+                    <td>@item.AmtLoan</td>
+                </tr>
+                <tr>
+                    <th>Intrest Rate</th>
+                    <td>@item.InterestRate%</td>
+                </tr>
+                <tr>
+                    <th>Round</th>
+                    <td>@item.Round</td>
+                </tr>
+                <tr>
+                    <th>Date Transferd</th>
+                    <td>@item.TransferDate.ToString("d")</td>
+                </tr>
+                <tr>
+                    <th>Instalments</th>
+                    <td>@item.Instalments</td>
+                </tr>
+                <tr>
+                    <th>Frequency</th>
+                    <td>@item.Frequency.ToString()</td>
+                </tr>
+                <tr>
+                    <th>Instalments</th>
+                    <td>@item.Instalments</td>
+                </tr>
+                @{var Plan = new LCNetv5.Classes.PaymentPlan();
+                Plan.CreatePaymentPlan(item);
+                Plan.applyPayments((decimal)item.Payments.Sum(y => y.AmtPaid));
+                }
+                <tr>
+                    <th>
+                        Date Payment Due
+                    </th>
+                    <th>
+                        Date Paid
+                    </th>
+                    <th>
+                        Amount Paid
+                    </th>
+                    <th>
+                        Days Late
+                    </th>
+                </tr>
+                @foreach (var pay in item.Payments)
+                {
+                    <tr>
+                        <td>
+                            @pay.DatePmtDue.ToString("d")
+                        </td>
+                        <td>
+                            @{if (pay.DatePmtPaid != null)
+                            {
+                                System.DateTime rightDate = (System.DateTime)pay.DatePmtPaid;
+                                @rightDate.ToString("d")
+                            }
+                            else
+                            {
+                                @pay.DatePmtPaid;
+                            }
+
+
+                            }
+                        </td>
+                        <th>
+                            @pay.AmtPaid
+                        </th>
+                        <th>
+                            @{ DateTime a = pay.DatePmtPaid ?? DateTime.Now;
+                             TimeSpan z = a - pay.DatePmtDue;
+
+                            }
+                            @z.Days
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Balance
+                        </th>
+                        <td>
+                            @{decimal Balance = Plan.getTotalPaymentDue() - (decimal)item.Payments.Sum(x => x.AmtPaid); }
+                            @Balance
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        }
+    </div>
+</body>
+</html>

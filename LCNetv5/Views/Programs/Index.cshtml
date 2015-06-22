@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LCNetv5.Models.Program>
+
+@{
+    ViewBag.Title = "Index";
+}
+@if (ViewBag.Client.Id != -1) { 
+<h2> @ViewBag.Client.getFullName()</h2>
+}
+<p>
+    @Html.ActionLink("Create New", "Create", new {Id = ViewBag.Client.Id })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Client.getFullName()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgName)
+        </td>
+        <td>
+            @Html.ActionLink("Loans", "Index", "Loans" , new { id=item.Id }, null) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

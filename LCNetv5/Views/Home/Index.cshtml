@@ -1,0 +1,19 @@
+﻿@model List<LCNetv5.Models.Log>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to La Ceiba Net</h1>
+    
+</div>
+
+<div class="col-md-12" >
+    @foreach (var item in Model)
+    {
+        <ul>
+            <li>@item.getDeets()</li>
+        </ul>
+
+    }
+</div>
