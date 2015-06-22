@@ -147,3 +147,15 @@
 </table>
 @Html.ActionLink("Generate Contract", "Contract", new { controller = "Payments", id = Model.Id })
 
+
+@if (Model.Active)
+{
+
+    <p>||</p> @Html.ActionLink("Close Loan", "CloseLoan", new { controller = "Payments", id = Model.Id })
+    
+}
+else
+{
+    <h1 style="color: red">LOAN IS CLOSED</h1>
+}
+

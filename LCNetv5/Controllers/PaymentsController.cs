@@ -206,8 +206,17 @@ namespace LCNetv5.Controllers
         }
 
 
+        public ActionResult CloseLoan(int id)
+        {
+            Loan loan = db.Loans.Find(id);
+            loan.Active = false;
+            db.SaveChanges();
 
 
 
+
+
+            return RedirectToAction("IndPayment", new { id = id});
+        }
     }
 }

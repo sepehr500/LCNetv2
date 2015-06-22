@@ -84,15 +84,15 @@ namespace LCNetv5.Classes
 
 
         }
-        public static int? getRecentPayment(Client x)
+        public static int? getRecentLoan( this Client x)
         {
 
 
             try
             {
-                if (x.Programs.Last().Loans.Last().Payments != null)
+                if (x.Programs.Last().Loans.OrderBy(z => z.TransferDate).Last() != null)
                 {
-                    return x.Programs.ToList().Last().Loans.ToList().Last().Payments.ToList().Last().Id;
+                    return x.Programs.ToList().Last().Loans.ToList().OrderBy(z => z.TransferDate).ToList().Last().Id;
                 }
                 else
                 {
