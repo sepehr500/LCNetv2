@@ -22,7 +22,8 @@ namespace LCNetv5.Models
         public int Id { get; set; }
         [Display(Name = "Loan Amount Is")]
         public decimal AmtLoan { get; set; }
-        [Display(Name = "Dispursal Date")]
+        
+        [Display(Name = "Loan Start Date")]
         [DataType(DataType.Date)]
         public System.DateTime TransferDate { get; set; }
 

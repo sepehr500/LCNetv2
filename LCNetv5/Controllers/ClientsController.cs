@@ -19,7 +19,7 @@ namespace LCNetv5.Controllers
         public ActionResult Index()
         {
            
-            return View(db.Clients.ToList());
+            return View(db.Clients.ToList().OrderBy(x => x.DateAdded));
         }
 
         // GET: Clients/Details/5
@@ -48,7 +48,7 @@ namespace LCNetv5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Center,MiddleName1,MiddleName2,BirthDay")] Client client)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Center,MiddleName1,MiddleName2,BirthDay,LegacyScore")] Client client)
         {
             client.DateAdded = DateTime.Now;
             if (ModelState.IsValid)

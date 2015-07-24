@@ -47,7 +47,7 @@ namespace LCNetv5.Models
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> BirthDay { get; set; }
 
-
+        [Display(Name = "Legacy Score(%)")]
         public Nullable<int> LegacyScore { get; set; }
         public Status Status { get; set; }
 
@@ -135,7 +135,23 @@ namespace LCNetv5.Models
         /// <returns>Credit Score</returns>
         public float getCScore()
         {
-            return (float)this.getNum() / (float)this.getPaymentCount();
+            if (this.LegacyScore != null)
+            {
+                var num = getNum();
+                var dem = getPaymentCount();
+                try
+                {
+                var total = num/dem;
+                return (float) (total + (float)this.LegacyScore * .01);
+
+                }
+                catch (Exception)
+                {
+                    return (float) ((float)this.LegacyScore * .01);
+
+                }
+            }
+            return ((float)this.getNum() / (float)this.getPaymentCount());
 
         }
 
