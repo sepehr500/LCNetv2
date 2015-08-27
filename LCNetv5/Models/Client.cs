@@ -142,7 +142,7 @@ namespace LCNetv5.Models
                 try
                 {
                 var total = num/dem;
-                return (float) (total + (float)this.LegacyScore * .01);
+                return (float) ((total + (float)this.LegacyScore) / 2 * .01);
 
                 }
                 catch (Exception)

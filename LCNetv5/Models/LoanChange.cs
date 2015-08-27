@@ -8,12 +8,10 @@ namespace LCNetv5.Models
 {
     public class LoanChange : Log 
     {
-        public int LoanId { get; set; }
-        public virtual Loan Loan { get; set; }
-
-        public override string getDeets()
+        public LoanChange() { }
+        public LoanChange(Loan loan)
         {
-            return this.getUserandChange() + Loan.getInfo();
+            Info = loan.getInfo();
         }
     }
 }

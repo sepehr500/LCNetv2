@@ -180,6 +180,18 @@
     <Compile Include="Migrations\201505042123504_DateAdded.Designer.cs">
       <DependentUpon>201505042123504_DateAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507241542396_loanChange.cs" />
+    <Compile Include="Migrations\201507241542396_loanChange.Designer.cs">
+      <DependentUpon>201507241542396_loanChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507251433342_DeleteChange.cs" />
+    <Compile Include="Migrations\201507251433342_DeleteChange.Designer.cs">
+      <DependentUpon>201507251433342_DeleteChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507251644463_MoreChanges.cs" />
+    <Compile Include="Migrations\201507251644463_MoreChanges.Designer.cs">
+      <DependentUpon>201507251644463_MoreChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoanChange.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Classes\PaymentPlan.cs" />
@@ -330,6 +342,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505042123504_DateAdded.resx">
       <DependentUpon>201505042123504_DateAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507241542396_loanChange.resx">
+      <DependentUpon>201507241542396_loanChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507251433342_DeleteChange.resx">
+      <DependentUpon>201507251433342_DeleteChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507251644463_MoreChanges.resx">
+      <DependentUpon>201507251644463_MoreChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

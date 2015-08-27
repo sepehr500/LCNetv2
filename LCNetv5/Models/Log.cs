@@ -8,18 +8,23 @@ namespace LCNetv5.Models
 {
     public abstract class Log
     {
-        public Log()
+        protected Log()
         {
             this.Date = DateTime.Now;
         }
         public int Id { get; set; }
         public string UserId { get; set; }
         public Change ChangeType { get; set; }
+        
+        public string Info { get; set; }
         public DateTime Date { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 
-        public abstract string getDeets();
+        public string getDeets()
+        {
+            return getUserandChange() + Info;
+        }
 
         public string getUserandChange()
         {

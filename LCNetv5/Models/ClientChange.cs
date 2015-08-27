@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
+using RestSharp.Extensions;
 
 namespace LCNetv5.Models
 {
@@ -14,16 +16,16 @@ namespace LCNetv5.Models
     }
     public class ClientChange : Log 
     {
-        
-        public int ClientId { get; set; }
-        
-        public virtual Client Client { get; set; }
-
-
-
-        public override string getDeets()
+        public ClientChange()
         {
-            return this.getUserandChange() + Client.getFullName();
+            
         }
+        public ClientChange(Client client)
+        {
+            Info = client.getFullName();
+        }
+
+
+      
     }
 }

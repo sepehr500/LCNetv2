@@ -54,7 +54,7 @@ namespace LCNetv5.Controllers
             if (ModelState.IsValid)
             {
                 db.Clients.Add(client);
-                db.ClientChanges.Add(new ClientChange{UserId = User.Identity.GetUserId() ,ChangeType = Change.Created , ClientId = client.Id });
+                db.ClientChanges.Add(new ClientChange(client){UserId = User.Identity.GetUserId() ,ChangeType = Change.Created });
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -87,7 +87,7 @@ namespace LCNetv5.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(client).State = EntityState.Modified;
-                db.ClientChanges.Add(new ClientChange { UserId = User.Identity.GetUserId(), ChangeType = Change.Modified, ClientId = client.Id });
+                db.ClientChanges.Add(new ClientChange(client) { UserId = User.Identity.GetUserId(), ChangeType = Change.Modified});
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -115,8 +115,13 @@ namespace LCNetv5.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Client client = db.Clients.Find(id);
+            var deleteclient = new ClientChange(client)
+            {
+                UserId = User.Identity.GetUserId(),
+                ChangeType = Change.Deleted,
+                         };
+            db.ClientChanges.Add(deleteclient);
             db.Clients.Remove(client);
-            //db.ClientChanges.Add(new ClientChange { UserId = User.Identity.GetUserId(), ChangeType = Change.Deleted, ClientId = client.Id });
             db.SaveChanges();
             return RedirectToAction("Index");
         }

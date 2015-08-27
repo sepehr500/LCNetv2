@@ -32,55 +32,56 @@ namespace LCNetv5.Classes
         /// Fills the payments property with a list of payments that represents the payment
         /// plan.
         /// </summary>
-        /// <param name="Loan"></param>
-        public void CreatePaymentPlan(Loan Loan)
+        /// <param name="loan"></param>
+        public void CreatePaymentPlan(Loan loan)
         {
             //Check if Create Payment Plan is Null
             double IR = 0;
             try
             {
-                IR = Loan.InterestRate / 100d;
+                IR = loan.InterestRate / 100d;
             }
             catch (NullReferenceException x)
             {
-                IR = Loan.InterestRate / 100d;
+                IR = loan.InterestRate / 100d;
 
             }
 
 
 
-            DateTime temp = Loan.TransferDate;
+            DateTime temp = loan.TransferDate;
             //Total the client has paid
-            decimal PaymentTotal = (decimal)Loan.Payments.Sum(x => x.AmtPaid);
+            decimal PaymentTotal = (decimal)loan.Payments.Sum(x => x.AmtPaid);
             double PDLength = 0;
             int days = 0;
             bool month = false;
-            decimal Balance = Loan.AmtLoan;
-            switch (Loan.Frequency)
+            decimal Balance = loan.AmtLoan;
+            var num = 0;
+            switch (loan.TimePeriod)
             {
-                case Frequency.Monthly:
-                    month = true;
-                    PDLength = 1 / 12d;
+                case TimePeriod.Weeks:
+                    num = loan.Frequency*7;
+                    
                     break;
-                case Frequency.Weekly:
-                    days = 7;
-                    PDLength = 1 / 52.177d;
+                case TimePeriod.Months:
+                    num = loan.Frequency * 30;
+                    
                     break;
-                case Frequency.Biweekly:
-                    days = 15;
-                    PDLength = 15 / 360d;
+               case TimePeriod.Days: 
+                    num = loan.Frequency;
+                    break;
 
-                    break;
             }
+            PDLength = num/365d;
             //Interest Rate per Period
             decimal IRPP = (decimal)IR * (decimal)PDLength;
             //Calculate EMI
-            decimal EMI = IRPP * Loan.AmtLoan / (decimal)(1 - (Math.Pow(1 + (double)IRPP, (double)Loan.Instalments * -1)));
+            decimal EMI = IRPP * loan.AmtLoan / (decimal)(1 - (Math.Pow(1 + (double)IRPP, (double)loan.Instalments * -1)));
 
             //decimal rounded = decimal.Round(EMI , 2);
             EMI = decimal.Round(EMI, 2, MidpointRounding.AwayFromZero);
 
-            for (int i = 1; i <= Loan.Instalments; i++)
+            for (int i = 1; i <= loan.Instalments; i++)
             {
                 Payment y = new Payment();
                 y.PaymentDue = decimal.Round(EMI, 2);
@@ -90,7 +91,7 @@ namespace LCNetv5.Classes
                 Balance = Balance - y.Principal;
                 y.Balance = Balance;
                 //if on the last installment there is money left over because of rounding, add it to the final principal. 
-                if (i == Loan.Instalments && y.Balance != 0)
+                if (i == loan.Instalments && y.Balance != 0)
                 {
                     y.Principal += Balance;
                     y.Balance -= Balance;
@@ -98,9 +99,9 @@ namespace LCNetv5.Classes
                 y.PaymentDue = y.Principal + y.Interest;
 
                 //Compute Due Dates
-                if (month)
+                if (loan.TimePeriod == TimePeriod.Months)
                 {
-                    y.DateDue = temp.AddMonths(1);
+                    y.DateDue = temp.AddMonths(loan.Frequency);
                 }
                 else
                 {
@@ -119,22 +120,21 @@ namespace LCNetv5.Classes
 
 
             }
-            switch (Loan.Frequency)
+            switch (loan.TimePeriod)
             {
-                case Frequency.Monthly:
-                    this.Often = "Monthly";
-                    this.Term = Loan.Instalments.ToString() + " " + "Months";
+                case TimePeriod.Months:
+                    this.Often = "Months";
+                    this.Term = (loan.Instalments * loan.Frequency)  + " " + "Months";
                     break;
-                case Frequency.Weekly:
+                case TimePeriod.Days:
 
-                    this.Often= "Weekly";
-                    this.Term = Loan.Instalments.ToString() + " " + "Weeks";
+                    this.Often= "Days";
+                    this.Term = (loan.Instalments * loan.Frequency) + " " + "Days";
                     break;
-                case Frequency.Biweekly:
+                case TimePeriod.Weeks:
 
-                    this.Often= "BiWeekly";
-                    var adjInst = Loan.Instalments * 2;
-                    this.Term = adjInst.ToString() + " " + "Weeks";
+                    this.Often= "Weeks";
+                    this.Term = (loan.Instalments * loan.Frequency) + " " + "Weeks";
                     break;
             }
 

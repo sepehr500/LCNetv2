@@ -8,12 +8,14 @@ namespace LCNetv5.Models
 {
     public class PaymentChange : Log 
     {
-        public int PaymentId { get; set; }
-        public virtual Payment Payment { get; set; }
-
-        public override string getDeets()
+        public PaymentChange()
         {
-            return this.getUserandChange() + Payment.Loan.getInfo() + " payment Id is " + Payment.Id;
+            
         }
+        public PaymentChange(Payment payment)
+        {
+            Info =  payment.Loan.getInfo() + " payment Id is " + payment.Id;
+        }
+     
     }
 }

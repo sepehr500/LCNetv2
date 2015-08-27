@@ -59,13 +59,13 @@ namespace LCNetv5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AmtLoan,TransferDate,Round,InterestRate,Frequency,Instalments,ProgramId")] Loan loan)
+        public ActionResult Create([Bind(Include = "Id,AmtLoan,TransferDate,Round,InterestRate,Frequency,Instalments,ProgramId,TimePeriod")] Loan loan)
         {
             loan.Active = true;
             if (ModelState.IsValid)
             {
                 db.Loans.Add(loan);
-                db.LoanChanges.Add(new LoanChange{ UserId = User.Identity.GetUserId(), ChangeType = Change.Created, LoanId= loan.Id });
+                db.LoanChanges.Add(new LoanChange(loan){ UserId = User.Identity.GetUserId(), ChangeType = Change.Created});
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -100,7 +100,7 @@ namespace LCNetv5.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(loan).State = EntityState.Modified;
-                db.LoanChanges.Add(new LoanChange{ UserId = User.Identity.GetUserId(), ChangeType = Change.Modified, LoanId= loan.Id });
+                db.LoanChanges.Add(new LoanChange(loan){ UserId = User.Identity.GetUserId(), ChangeType = Change.Modified});
                 db.SaveChanges();
                 return RedirectToAction("Index", new { Id = loan.Id });
             }
@@ -130,7 +130,7 @@ namespace LCNetv5.Controllers
         {
             Loan loan = db.Loans.Find(id);
             db.Loans.Remove(loan);
-            //db.LoanChanges.Add(new LoanChange{ UserId = User.Identity.GetUserId(), ChangeType = Change.Deleted, LoanId= loan.Id });
+            db.LoanChanges.Add(new LoanChange(loan){ UserId = User.Identity.GetUserId(), ChangeType = Change.Deleted});
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -185,7 +185,7 @@ namespace LCNetv5.Controllers
                 {
                     newloan.Active = true;
                     db.Loans.Add(newloan);
-                    db.LoanChanges.Add(new LoanChange{ UserId = User.Identity.GetUserId(), ChangeType = Change.Created, LoanId= newloan.Id });
+                    db.LoanChanges.Add(new LoanChange(newloan){ UserId = User.Identity.GetUserId(), ChangeType = Change.Created});
                     db.SaveChanges();
                     return RedirectToAction("Index", new {Id = newloan.ProgramId });
                 }

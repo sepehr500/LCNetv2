@@ -12,6 +12,14 @@ namespace LCNetv5.Models
         Biweekly,
         Monthly
     }
+
+    public enum TimePeriod
+    {
+        Days,
+        Months,
+        Weeks,
+        Years
+    }
     public class Loan
     {
          public Loan()
@@ -33,8 +41,12 @@ namespace LCNetv5.Models
 
         public float InterestRate { get; set; }
 
-        public Frequency Frequency { get; set; }
+        [Display(Name = "Repaied every")]
+        public int Frequency { get; set; }
 
+        public TimePeriod TimePeriod { get; set; }
+
+        [Display(Name = "Over how many insatllments?")]
         public int Instalments { get; set; }
 
         public int ProgramId { get; set; }

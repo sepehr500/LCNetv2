@@ -94,7 +94,7 @@ namespace LCNetv5.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(payment).State = EntityState.Modified;
-                db.PaymentChanges.Add(new PaymentChange { UserId = User.Identity.GetUserId(), ChangeType = Change.Modified, PaymentId = payment.Id }); 
+                db.PaymentChanges.Add(new PaymentChange(payment) { UserId = User.Identity.GetUserId(), ChangeType = Change.Modified }); 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -125,7 +125,7 @@ namespace LCNetv5.Controllers
             LCNetv5.Models.Payment payment = db.Payments.Find(id);
             var returnID = payment.Loan.Id;
             db.Payments.Remove(payment);
-               // db.PaymentChanges.Add(new PaymentChange { UserId = User.Identity.GetUserId(), ChangeType = Change.Deleted, PaymentId = payment.Id });
+            db.PaymentChanges.Add(new PaymentChange(payment) { UserId = User.Identity.GetUserId(), ChangeType = Change.Deleted});
             db.SaveChanges();
             return RedirectToAction("IndPayment" , new {id = returnID });
         }
@@ -178,7 +178,7 @@ namespace LCNetv5.Controllers
             if (ModelState.IsValid)
             {
                 db.Payments.Add(paymentTbl);
-                db.PaymentChanges.Add(new PaymentChange { UserId = User.Identity.GetUserId(), ChangeType = Change.Created, PaymentId = paymentTbl.Id });
+                db.PaymentChanges.Add(new PaymentChange (paymentTbl){ UserId = User.Identity.GetUserId(), ChangeType = Change.Created });
                 db.SaveChanges();
                 return RedirectToAction("IndPayment", new {id = paymentTbl.LoanId});
             }
