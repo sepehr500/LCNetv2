@@ -164,7 +164,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Migrations\201505042045145_AllLogs.cs" />
     <Compile Include="Migrations\201505042045145_AllLogs.Designer.cs">
       <DependentUpon>201505042045145_AllLogs.cs</DependentUpon>
@@ -193,16 +192,6 @@
     <Compile Include="Migrations\201507251644463_MoreChanges.Designer.cs">
       <DependentUpon>201507251644463_MoreChanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508271424213_RoleControl.cs" />
-    <Compile Include="Migrations\201508271424213_RoleControl.Designer.cs">
-      <DependentUpon>201508271424213_RoleControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508271517496_blabl.cs" />
-    <Compile Include="Migrations\201508271517496_blabl.Designer.cs">
-      <DependentUpon>201508271517496_blabl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AppRole.cs" />
-    <Compile Include="Models\IdentityHelpers.cs" />
     <Compile Include="Models\LoanChange.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Classes\PaymentPlan.cs" />
@@ -211,6 +200,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoansController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,7 +224,6 @@
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\PaymentChange.cs" />
     <Compile Include="Models\Program.cs" />
-    <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -324,9 +313,6 @@
     <Content Include="Views\Loans\IndLoanCreate.cshtml" />
     <Content Include="Views\Payments\Contract.cshtml" />
     <Content Include="Views\Clients\History.cshtml" />
-    <Content Include="Views\RoleAdmin\Create.cshtml" />
-    <Content Include="Views\RoleAdmin\Edit.cshtml" />
-    <Content Include="Views\RoleAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -365,12 +351,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507251644463_MoreChanges.resx">
       <DependentUpon>201507251644463_MoreChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271424213_RoleControl.resx">
-      <DependentUpon>201508271424213_RoleControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271517496_blabl.resx">
-      <DependentUpon>201508271517496_blabl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
