@@ -1,0 +1,119 @@
+﻿@model IEnumerable<LCNetv5.Models.EntryForm>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HowFindOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberInHousehold)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PayRent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmtRent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountOfTimeInCommunity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhereLiveBefore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhyMove)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransportTypes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinanceExperience)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstLoanFor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Business)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOfWork)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Misc)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HowFindOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberInHousehold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeOwner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayRent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmtRent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountOfTimeInCommunity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhereLiveBefore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhyMove)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransportTypes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinanceExperience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstLoanFor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Business)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Misc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

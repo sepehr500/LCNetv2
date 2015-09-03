@@ -52,6 +52,8 @@ namespace LCNetv5.Models
         public Status Status { get; set; }
 
         public virtual ICollection<Program> Programs { get; set; }
+        public virtual ICollection<EntryForm> EntryForms { get; set; } 
+        public virtual ICollection<StandardForm> StandardForms { get; set; } 
         public string getFullName()
         {
             return String.Format("{0} {1} {2} {3}", this.FirstName, this.MiddleName1, this.MiddleName2, this.LastName);

@@ -1,0 +1,138 @@
+﻿@model LCNetv5.Models.EntryForm
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>EntryForm</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.HowFindOut)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HowFindOut)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumberInHousehold)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumberInHousehold)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HomeOwner)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HomeOwner)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PayRent)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PayRent)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AmtRent)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AmtRent)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AmountOfTimeInCommunity)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AmountOfTimeInCommunity)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.WhereLiveBefore)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.WhereLiveBefore)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.WhyMove)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.WhyMove)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TransportTypes)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TransportTypes)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FinanceExperience)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FinanceExperience)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstLoanFor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FirstLoanFor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Business)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Business)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TypeOfWork)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TypeOfWork)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Misc)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Misc)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

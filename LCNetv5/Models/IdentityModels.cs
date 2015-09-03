@@ -38,6 +38,10 @@ namespace LCNetv5.Models
         public virtual DbSet<LoanChange> LoanChanges { get; set; }
         public virtual DbSet<PaymentChange> PaymentChanges { get; set; }
 
+        public virtual DbSet<EntryForm> EntryForms { get; set; }
+
+        public virtual DbSet<StandardForm> StandardForms { get; set; }
+
 
     }
 }
