@@ -194,17 +194,25 @@
     <Compile Include="Migrations\201507251644463_MoreChanges.Designer.cs">
       <DependentUpon>201507251644463_MoreChanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508271552573_thing.cs" />
-    <Compile Include="Migrations\201508271552573_thing.Designer.cs">
-      <DependentUpon>201508271552573_thing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508271652484_try2.cs" />
-    <Compile Include="Migrations\201508271652484_try2.Designer.cs">
-      <DependentUpon>201508271652484_try2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201509022001482_CCCFroms.cs" />
     <Compile Include="Migrations\201509022001482_CCCFroms.Designer.cs">
       <DependentUpon>201509022001482_CCCFroms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509040126306_ThingsIForgot.cs" />
+    <Compile Include="Migrations\201509040126306_ThingsIForgot.Designer.cs">
+      <DependentUpon>201509040126306_ThingsIForgot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509041512354_TestingAnother.cs" />
+    <Compile Include="Migrations\201509041512354_TestingAnother.Designer.cs">
+      <DependentUpon>201509041512354_TestingAnother.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509041516022_DiscrimTry.cs" />
+    <Compile Include="Migrations\201509041516022_DiscrimTry.Designer.cs">
+      <DependentUpon>201509041516022_DiscrimTry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509041522085_NotMappedTry.cs" />
+    <Compile Include="Migrations\201509041522085_NotMappedTry.Designer.cs">
+      <DependentUpon>201509041522085_NotMappedTry.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\EntryForm.cs" />
@@ -380,14 +388,20 @@
     <EmbeddedResource Include="Migrations\201507251644463_MoreChanges.resx">
       <DependentUpon>201507251644463_MoreChanges.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271552573_thing.resx">
-      <DependentUpon>201508271552573_thing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271652484_try2.resx">
-      <DependentUpon>201508271652484_try2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509022001482_CCCFroms.resx">
       <DependentUpon>201509022001482_CCCFroms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509040126306_ThingsIForgot.resx">
+      <DependentUpon>201509040126306_ThingsIForgot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509041512354_TestingAnother.resx">
+      <DependentUpon>201509041512354_TestingAnother.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509041516022_DiscrimTry.resx">
+      <DependentUpon>201509041516022_DiscrimTry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509041522085_NotMappedTry.resx">
+      <DependentUpon>201509041522085_NotMappedTry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

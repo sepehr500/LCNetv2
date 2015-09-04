@@ -87,5 +87,6 @@
 <p>
     @Html.ActionLink("Loan History", "History", new { Id = Model.Id}) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Add CCC Survey", "Create" , "EntryForms" , new {ClientId = Model.Id} , null) |
     @Html.ActionLink("Back to List", "Index")
 </p>

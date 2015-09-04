@@ -3,16 +3,14 @@ namespace LCNetv5.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class try2 : DbMigration
+    public partial class DiscrimTry : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.AspNetRoles", "Discriminator", c => c.String(nullable: false, maxLength: 128));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.AspNetRoles", "Discriminator");
         }
     }
 }

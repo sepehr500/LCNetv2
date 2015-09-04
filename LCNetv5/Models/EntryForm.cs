@@ -1,30 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LCNetv5.Models
 {
-   public  enum HowFind
-    {
-        Friend,
-        Neighbor,
-        Other
-    }
-
-    public enum TransportTypes
-    {
-        Bike,
-        Moto,
-        Car,
-        Bus,
-        Other
-    }
 
 
 
 
+    
     public class EntryForm : FormHeading
     {
         public HowFind HowFindOut { get; set; }
