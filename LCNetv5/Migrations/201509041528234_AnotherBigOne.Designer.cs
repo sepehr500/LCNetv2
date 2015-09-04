@@ -7,13 +7,13 @@ namespace LCNetv5.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class NotMappedTry : IMigrationMetadata
+    public sealed partial class AnotherBigOne : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NotMappedTry));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AnotherBigOne));
         
         string IMigrationMetadata.Id
         {
-            get { return "201509041522085_NotMappedTry"; }
+            get { return "201509041528234_AnotherBigOne"; }
         }
         
         string IMigrationMetadata.Source
