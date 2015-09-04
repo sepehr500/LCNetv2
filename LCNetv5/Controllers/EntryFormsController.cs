@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LCNetv5.Models;
-using Microsoft.AspNet.Identity;
 
 namespace LCNetv5.Controllers
 {
@@ -37,9 +36,8 @@ namespace LCNetv5.Controllers
         }
 
         // GET: EntryForms/Create
-        public ActionResult Create(int ClientId)
+        public ActionResult Create()
         {
-            Session["clientId"] = ClientId;
             return View();
         }
 
@@ -52,8 +50,6 @@ namespace LCNetv5.Controllers
         {
             if (ModelState.IsValid)
             {
-                entryForm.ClientId = (int)Session["clientId"];
-                entryForm.UserId = User.Identity.GetUserId();
                 db.EntryForms.Add(entryForm);
                 db.SaveChanges();
                 return RedirectToAction("Index");

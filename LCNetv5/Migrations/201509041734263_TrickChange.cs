@@ -3,7 +3,7 @@ namespace LCNetv5.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AnotherBigOne : DbMigration
+    public partial class TrickChange : DbMigration
     {
         public override void Up()
         {
