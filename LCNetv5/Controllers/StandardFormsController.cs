@@ -11,32 +11,33 @@ using Microsoft.AspNet.Identity;
 
 namespace LCNetv5.Controllers
 {
-    public class EntryFormsController : Controller
+    public class StandardFormsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: EntryForms
+        // GET: StandardForms
         public ActionResult Index()
         {
-            return View(db.EntryForms.ToList());
+            var standardForms = db.StandardForms.Include(s => s.Client).Include(s => s.User);
+            return View(standardForms.ToList());
         }
 
-        // GET: EntryForms/Details/5
+        // GET: StandardForms/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EntryForm entryForm = db.EntryForms.Find(id);
-            if (entryForm == null)
+            StandardForm standardForm = db.StandardForms.Find(id);
+            if (standardForm == null)
             {
                 return HttpNotFound();
             }
-            return View(entryForm);
+            return View(standardForm);
         }
 
-        // GET: EntryForms/Create
+        // GET: StandardForms/Create
         public ActionResult Create(int ClientId)
         {
             Session["clientid"] = ClientId;
@@ -44,81 +45,81 @@ namespace LCNetv5.Controllers
             return View();
         }
 
-        // POST: EntryForms/Create
+        // POST: StandardForms/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HowFindOut,NumberInHousehold,HomeOwner,PayRent,AmtRent,AmountOfTimeInCommunity,WhereLiveBefore,WhyMove,TransportTypes,FinanceExperience,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] EntryForm entryForm)
+        public ActionResult Create([Bind(Include = "Id,InterestGood,RepaySchedGood,PriceShock,StepsTaken,AdjustModeOfIncome,BuisnessImped,ChangeBuisnessModel,LessThan90Days,FormalSavings,InformalSavings,CapitalInvest,Freedom,Seasonal,HowSoSeasonal,WhatLargerLoanFor,FamilyDoingWell,ProblemsToChange,HowCanWeHelp,ClientId,UserId,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] StandardForm standardForm)
         {
-            entryForm.UserId = User.Identity.GetUserId();
-            entryForm.StartTime = (DateTime) Session["StartTime"];
-            entryForm.ClientId = (int) Session["clientid"];
-            entryForm.EndTime = DateTime.Now;
+
+            standardForm.UserId = User.Identity.GetUserId();
+            standardForm.StartTime = (DateTime)Session["StartTime"];
+            standardForm.ClientId = (int)Session["clientid"];
+            standardForm.EndTime = DateTime.Now;
             if (ModelState.IsValid)
             {
-
-                db.EntryForms.Add(entryForm);
+                db.StandardForms.Add(standardForm);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Clients");
             }
 
-            return View(entryForm);
+            return View(standardForm);
         }
 
-        // GET: EntryForms/Edit/5
+        // GET: StandardForms/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EntryForm entryForm = db.EntryForms.Find(id);
-            if (entryForm == null)
+            StandardForm standardForm = db.StandardForms.Find(id);
+            if (standardForm == null)
             {
                 return HttpNotFound();
             }
-            return View(entryForm);
+            return View(standardForm);
         }
 
-        // POST: EntryForms/Edit/5
+        // POST: StandardForms/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HowFindOut,NumberInHousehold,HomeOwner,PayRent,AmtRent,AmountOfTimeInCommunity,WhereLiveBefore,WhyMove,TransportTypes,FinanceExperience,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] EntryForm entryForm)
+        public ActionResult Edit([Bind(Include = "Id,InterestGood,RepaySchedGood,PriceShock,StepsTaken,AdjustModeOfIncome,BuisnessImped,ChangeBuisnessModel,LessThan90Days,FormalSavings,InformalSavings,CapitalInvest,Freedom,Seasonal,HowSoSeasonal,WhatLargerLoanFor,FamilyDoingWell,ProblemsToChange,HowCanWeHelp,ClientId,UserId,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] StandardForm standardForm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(entryForm).State = EntityState.Modified;
+                db.Entry(standardForm).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(entryForm);
+            return View(standardForm);
         }
 
-        // GET: EntryForms/Delete/5
+        // GET: StandardForms/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EntryForm entryForm = db.EntryForms.Find(id);
-            if (entryForm == null)
+            StandardForm standardForm = db.StandardForms.Find(id);
+            if (standardForm == null)
             {
                 return HttpNotFound();
             }
-            return View(entryForm);
+            return View(standardForm);
         }
 
-        // POST: EntryForms/Delete/5
+        // POST: StandardForms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EntryForm entryForm = db.EntryForms.Find(id);
-            db.EntryForms.Remove(entryForm);
+            StandardForm standardForm = db.StandardForms.Find(id);
+            db.StandardForms.Remove(standardForm);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

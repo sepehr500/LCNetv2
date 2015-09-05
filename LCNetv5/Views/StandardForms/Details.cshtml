@@ -1,0 +1,242 @@
+﻿@model LCNetv5.Models.StandardForm
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>StandardForm</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Client.FirstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Client.FirstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.User.Email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InterestGood)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InterestGood)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RepaySchedGood)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RepaySchedGood)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceShock)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PriceShock)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StepsTaken)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StepsTaken)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AdjustModeOfIncome)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AdjustModeOfIncome)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BuisnessImped)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BuisnessImped)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ChangeBuisnessModel)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ChangeBuisnessModel)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LessThan90Days)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LessThan90Days)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FormalSavings)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FormalSavings)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InformalSavings)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InformalSavings)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CapitalInvest)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CapitalInvest)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Freedom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Freedom)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Seasonal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Seasonal)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HowSoSeasonal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HowSoSeasonal)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.WhatLargerLoanFor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.WhatLargerLoanFor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FamilyDoingWell)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FamilyDoingWell)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ProblemsToChange)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ProblemsToChange)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HowCanWeHelp)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HowCanWeHelp)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LoanFor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LoanFor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Savings)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Savings)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Business)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Business)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TypeOfWork)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TypeOfWork)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Misc)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Misc)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

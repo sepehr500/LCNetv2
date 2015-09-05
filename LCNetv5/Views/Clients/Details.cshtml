@@ -81,11 +81,39 @@
         <dd>
             @Html.DisplayFor(model => model.Status)
         </dd>
+        <dt>
+            Most Recent Survey
+        </dt>
+        <dd>
+            @if (Model.StandardForms.Count != 0 || Model.EntryForms.Count != 0) { 
+            if (Model.StandardForms.Count == 0)
+            {
+                string date = Model.EntryForms.First().StartTime.ToString();
+
+                <p>@date</p>
+
+            }
+            else
+            {
+                string date = Model.StandardForms.OrderByDescending(x => x.StartTime).First().StartTime.ToString();
+            }
+    }
+        </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Loan History", "History", new { Id = Model.Id}) |
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |
+    @if (Model.EntryForms.Count == 0)
+    {
+    @Html.ActionLink("CCC Entry Survey", "Create", "EntryForms"  ,new { ClientId = Model.Id } , null) @:|
+    }
+    @if (Model.EntryForms.Count > 0)
+    {
+
+        @Html.ActionLink("Add CCC Survey", "Create", "StandardForms", new {ClientId = Model.Id}, null) @:|
+        
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

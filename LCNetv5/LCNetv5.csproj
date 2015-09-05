@@ -166,34 +166,32 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\EntryFormsController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
-    <Compile Include="Migrations\201509041528234_AnotherBigOne.cs" />
-    <Compile Include="Migrations\201509041528234_AnotherBigOne.Designer.cs">
-      <DependentUpon>201509041528234_AnotherBigOne.cs</DependentUpon>
+    <Compile Include="Controllers\StandardFormsController.cs" />
+    <Compile Include="Migrations\201509041807552_Reset.cs" />
+    <Compile Include="Migrations\201509041807552_Reset.Designer.cs">
+      <DependentUpon>201509041807552_Reset.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201507251644463_MoreChanges.cs" />
-    <Compile Include="Migrations\201507251644463_MoreChanges.Designer.cs">
-      <DependentUpon>201507251644463_MoreChanges.cs</DependentUpon>
+    <Compile Include="Migrations\201509042137091_SmallFix.cs" />
+    <Compile Include="Migrations\201509042137091_SmallFix.Designer.cs">
+      <DependentUpon>201509042137091_SmallFix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509022001482_CCCFroms.cs" />
-    <Compile Include="Migrations\201509022001482_CCCFroms.Designer.cs">
-      <DependentUpon>201509022001482_CCCFroms.cs</DependentUpon>
+    <Compile Include="Migrations\201509042148279_AnotherSmallFix.cs" />
+    <Compile Include="Migrations\201509042148279_AnotherSmallFix.Designer.cs">
+      <DependentUpon>201509042148279_AnotherSmallFix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509040126306_ThingsIForgot.cs" />
-    <Compile Include="Migrations\201509040126306_ThingsIForgot.Designer.cs">
-      <DependentUpon>201509040126306_ThingsIForgot.cs</DependentUpon>
+    <Compile Include="Migrations\201509042152299_AnotherGASmallFix.cs" />
+    <Compile Include="Migrations\201509042152299_AnotherGASmallFix.Designer.cs">
+      <DependentUpon>201509042152299_AnotherGASmallFix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509041512354_TestingAnother.cs" />
-    <Compile Include="Migrations\201509041512354_TestingAnother.Designer.cs">
-      <DependentUpon>201509041512354_TestingAnother.cs</DependentUpon>
+    <Compile Include="Migrations\201509042159160_ForgotSomeIds.cs" />
+    <Compile Include="Migrations\201509042159160_ForgotSomeIds.Designer.cs">
+      <DependentUpon>201509042159160_ForgotSomeIds.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509041516022_DiscrimTry.cs" />
-    <Compile Include="Migrations\201509041516022_DiscrimTry.Designer.cs">
-      <DependentUpon>201509041516022_DiscrimTry.cs</DependentUpon>
+    <Compile Include="Migrations\201509050134076_StandardFormStuff.cs" />
+    <Compile Include="Migrations\201509050134076_StandardFormStuff.Designer.cs">
+      <DependentUpon>201509050134076_StandardFormStuff.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509041522085_NotMappedTry.cs" />
-    <Compile Include="Migrations\201509041522085_NotMappedTry.Designer.cs">
-      <DependentUpon>201509041522085_NotMappedTry.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\EntryForm.cs" />
     <Compile Include="Models\FormHeading.cs" />
@@ -212,7 +210,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientChange.cs" />
@@ -321,6 +318,11 @@
     <Content Include="Views\EntryForms\Details.cshtml" />
     <Content Include="Views\EntryForms\Edit.cshtml" />
     <Content Include="Views\EntryForms\Index.cshtml" />
+    <Content Include="Views\StandardForms\Create.cshtml" />
+    <Content Include="Views\StandardForms\Delete.cshtml" />
+    <Content Include="Views\StandardForms\Details.cshtml" />
+    <Content Include="Views\StandardForms\Edit.cshtml" />
+    <Content Include="Views\StandardForms\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -333,47 +335,23 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504252217411_BigOne.resx">
-      <DependentUpon>201504252217411_BigOne.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509041807552_Reset.resx">
+      <DependentUpon>201509041807552_Reset.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505042030017_LogTry.resx">
-      <DependentUpon>201505042030017_LogTry.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509042137091_SmallFix.resx">
+      <DependentUpon>201509042137091_SmallFix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505042045145_AllLogs.resx">
-      <DependentUpon>201505042045145_AllLogs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509042148279_AnotherSmallFix.resx">
+      <DependentUpon>201509042148279_AnotherSmallFix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505042045527_TryAgain.resx">
-      <DependentUpon>201505042045527_TryAgain.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509042152299_AnotherGASmallFix.resx">
+      <DependentUpon>201509042152299_AnotherGASmallFix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505042047337_WowAgain.resx">
-      <DependentUpon>201505042047337_WowAgain.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509042159160_ForgotSomeIds.resx">
+      <DependentUpon>201509042159160_ForgotSomeIds.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505042123504_DateAdded.resx">
-      <DependentUpon>201505042123504_DateAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507241542396_loanChange.resx">
-      <DependentUpon>201507241542396_loanChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507251433342_DeleteChange.resx">
-      <DependentUpon>201507251433342_DeleteChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507251644463_MoreChanges.resx">
-      <DependentUpon>201507251644463_MoreChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509022001482_CCCFroms.resx">
-      <DependentUpon>201509022001482_CCCFroms.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509040126306_ThingsIForgot.resx">
-      <DependentUpon>201509040126306_ThingsIForgot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509041512354_TestingAnother.resx">
-      <DependentUpon>201509041512354_TestingAnother.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509041516022_DiscrimTry.resx">
-      <DependentUpon>201509041516022_DiscrimTry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509041522085_NotMappedTry.resx">
-      <DependentUpon>201509041522085_NotMappedTry.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509050134076_StandardFormStuff.resx">
+      <DependentUpon>201509050134076_StandardFormStuff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
