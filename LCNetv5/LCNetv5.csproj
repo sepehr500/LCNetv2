@@ -39,7 +39,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -164,6 +168,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Classes\ExportToCSV.cs" />
+    <Compile Include="Classes\WebScraping.cs" />
     <Compile Include="Controllers\EntryFormsController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\StandardFormsController.cs" />
@@ -190,6 +196,30 @@
     <Compile Include="Migrations\201509050134076_StandardFormStuff.cs" />
     <Compile Include="Migrations\201509050134076_StandardFormStuff.Designer.cs">
       <DependentUpon>201509050134076_StandardFormStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509101639511_RemovedRentAmount.cs" />
+    <Compile Include="Migrations\201509101639511_RemovedRentAmount.Designer.cs">
+      <DependentUpon>201509101639511_RemovedRentAmount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151611073_AddedLoanID.cs" />
+    <Compile Include="Migrations\201509151611073_AddedLoanID.Designer.cs">
+      <DependentUpon>201509151611073_AddedLoanID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151619134_SlightModsSurveys.cs" />
+    <Compile Include="Migrations\201509151619134_SlightModsSurveys.Designer.cs">
+      <DependentUpon>201509151619134_SlightModsSurveys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171351342_RemovedDuplicate.cs" />
+    <Compile Include="Migrations\201509171351342_RemovedDuplicate.Designer.cs">
+      <DependentUpon>201509171351342_RemovedDuplicate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510020526436_PhoneNumberAndNarrative.cs" />
+    <Compile Include="Migrations\201510020526436_PhoneNumberAndNarrative.Designer.cs">
+      <DependentUpon>201510020526436_PhoneNumberAndNarrative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510020531485_ChangedPhoneNumberType.cs" />
+    <Compile Include="Migrations\201510020531485_ChangedPhoneNumberType.Designer.cs">
+      <DependentUpon>201510020531485_ChangedPhoneNumberType.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
@@ -352,6 +382,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509050134076_StandardFormStuff.resx">
       <DependentUpon>201509050134076_StandardFormStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509101639511_RemovedRentAmount.resx">
+      <DependentUpon>201509101639511_RemovedRentAmount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151611073_AddedLoanID.resx">
+      <DependentUpon>201509151611073_AddedLoanID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151619134_SlightModsSurveys.resx">
+      <DependentUpon>201509151619134_SlightModsSurveys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171351342_RemovedDuplicate.resx">
+      <DependentUpon>201509171351342_RemovedDuplicate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510020526436_PhoneNumberAndNarrative.resx">
+      <DependentUpon>201510020526436_PhoneNumberAndNarrative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510020531485_ChangedPhoneNumberType.resx">
+      <DependentUpon>201510020531485_ChangedPhoneNumberType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

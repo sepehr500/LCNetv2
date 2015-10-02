@@ -38,6 +38,7 @@ namespace LCNetv5.Controllers
         }
 
         // GET: Clients/Create
+        [Authorize(Roles = "Admin , Loans")]
         public ActionResult Create()
         {
             return View();
@@ -48,7 +49,8 @@ namespace LCNetv5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Center,MiddleName1,MiddleName2,BirthDay,LegacyScore")] Client client)
+        [Authorize(Roles = "Admin, Loans")]
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Center,MiddleName1,MiddleName2,BirthDay,LegacyScore, PhoneNumber, Narrative")] Client client)
         {
             client.DateAdded = DateTime.Now;
             if (ModelState.IsValid)
@@ -63,6 +65,7 @@ namespace LCNetv5.Controllers
         }
 
         // GET: Clients/Edit/5
+        [Authorize(Roles = "Admin, Loans")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,7 +85,8 @@ namespace LCNetv5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Center,MiddleName1,MiddleName2,DateAdded,BirthDay,LegacyScore,Status")] Client client)
+        [Authorize(Roles = "Admin,Loans")]
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Center,MiddleName1,MiddleName2,DateAdded,BirthDay,LegacyScore,Status, PhoneNumber, Narrative")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -95,6 +99,7 @@ namespace LCNetv5.Controllers
         }
 
         // GET: Clients/Delete/5
+        [Authorize(Roles = "Admin,Loans")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +117,7 @@ namespace LCNetv5.Controllers
         // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Loans")]
         public ActionResult DeleteConfirmed(int id)
         {
             Client client = db.Clients.Find(id);

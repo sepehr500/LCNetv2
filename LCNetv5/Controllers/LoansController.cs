@@ -12,10 +12,11 @@ using LCNetv5.Classes;
 
 namespace LCNetv5.Controllers
 {
+    [Authorize(Roles = "Admin,Loans")]
     public class LoansController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        
         // GET: Loans
         public ActionResult Index(int Id = -1)
         {
@@ -146,9 +147,9 @@ namespace LCNetv5.Controllers
 
         public ActionResult IndLoanCreate(int Id)
         {
-
             ViewBag.Program = db.Programs.Find(Id);
-            var loan = new Loan { ProgramId = Id };
+            
+            var loan = new Loan { ProgramId = Id , Program = ViewBag.Program };
             return View(loan);
         }
 
@@ -158,6 +159,8 @@ namespace LCNetv5.Controllers
         {
             if (Command == "Calculate")
             {
+                //THIS ADDS INTEREST
+                //newloan.InterestRate = (float) (newloan.InterestRate + WebScraping.HNInterestRate());
                 Program RoundTbl = db.Programs.Find(newloan.ProgramId);
                 PaymentPlan Plan = new PaymentPlan();
                 //PPlanHold holder = new PPlanHold();
@@ -184,6 +187,7 @@ namespace LCNetv5.Controllers
                 if (ModelState.IsValid)
                 {
                     newloan.Active = true;
+                    newloan.Program = db.Programs.Find(newloan.ProgramId);
                     db.Loans.Add(newloan);
                     db.LoanChanges.Add(new LoanChange(newloan){ UserId = User.Identity.GetUserId(), ChangeType = Change.Created});
                     db.SaveChanges();

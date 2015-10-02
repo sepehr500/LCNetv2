@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.VisualBasic;
 
 namespace LCNetv5.Classes
 {
@@ -39,61 +40,83 @@ namespace LCNetv5.Classes
             double IR = 0;
             try
             {
-                IR = loan.InterestRate / 100d;
+                IR = loan.InterestRate  / 100d;
             }
             catch (NullReferenceException x)
             {
-                IR = loan.InterestRate / 100d;
+                IR = loan.InterestRate  / 100d;
 
             }
 
 
-
+            
+            
             DateTime temp = loan.TransferDate;
+            double pdlen = 0;
             //Total the client has paid
             decimal PaymentTotal = (decimal)loan.Payments.Sum(x => x.AmtPaid);
             double PDLength = 0;
-            int days = 0;
+            //How many days to incrment by
+            double IncrementByDays = 0;
             bool month = false;
             decimal Balance = loan.AmtLoan;
             var num = 0;
+           var endDate = new DateTime(); 
             switch (loan.TimePeriod)
             {
                 case TimePeriod.Weeks:
-                    num = loan.Frequency*7;
+                    pdlen = 52;
+
+                     IncrementByDays =  loan.Frequency*7;
+                    endDate = loan.TransferDate.AddDays(loan.Frequency * 7 * loan.Instalments); 
                     
                     break;
                 case TimePeriod.Months:
-                    num = loan.Frequency * 30;
+                    endDate = loan.TransferDate.AddMonths(loan.Frequency * loan.Instalments);
+                    pdlen = 12;
                     
                     break;
                case TimePeriod.Days: 
-                    num = loan.Frequency;
+                    IncrementByDays = loan.Frequency;
+                    pdlen = 365;
+                    endDate = loan.TransferDate.AddDays(loan.Frequency * loan.Instalments); 
                     break;
 
             }
-            PDLength = num/365d;
+            var TotalDays = endDate.Subtract(loan.TransferDate).TotalDays;
+            PDLength = 1/pdlen;
             //Interest Rate per Period
-            decimal IRPP = (decimal)IR * (decimal)PDLength;
+            //decimal IRPP = (decimal)IR * (decimal)PDLength;
+            decimal IRPP = (decimal)IR / (decimal) pdlen;
             //Calculate EMI
-            decimal EMI = IRPP * loan.AmtLoan / (decimal)(1 - (Math.Pow(1 + (double)IRPP, (double)loan.Instalments * -1)));
-
+            //decimal EMI = IRPP * loan.AmtLoan / (decimal)(1 - (Math.Pow(1 + (double)IRPP, (double)loan.Instalments * -1)));
+            //var R = (loan.InterestRate/12)/100;
+            //var n =  (TotalDays/30);
+            //decimal EMI = (loan.AmtLoan * (decimal) R * (decimal) (Math.Pow((1 + R), n)) / (decimal) ((Math.Pow((1 + R), n)) - 1));
             //decimal rounded = decimal.Round(EMI , 2);
-            EMI = decimal.Round(EMI, 2, MidpointRounding.AwayFromZero);
-
+             decimal EMI =  (-1 * (decimal) Financial.Pmt((double) PDLength *  IR , loan.Instalments, (double) loan.AmtLoan));
+            decimal roundingloss = new decimal(0.0);
+            var nonroundedEMI = EMI;
+            EMI = decimal.Round(EMI, 2);
+            //Get number to subtract out.
+            roundingloss = (nonroundedEMI - EMI) * loan.Instalments;
+            
             for (int i = 1; i <= loan.Instalments; i++)
             {
                 Payment y = new Payment();
+                
                 y.PaymentDue = decimal.Round(EMI, 2);
                 y.Installment = i;
                 y.Interest = decimal.Round(Balance * IRPP, 2);
                 y.Principal = y.PaymentDue - y.Interest;
                 Balance = Balance - y.Principal;
                 y.Balance = Balance;
-                //if on the last installment there is money left over because of rounding, add it to the final principal. 
+                //DEPRICATED: if on the last installment there is money left over because of rounding, add it to the final principal. 
+                //
                 if (i == loan.Instalments && y.Balance != 0)
                 {
-                    y.Principal += Balance;
+                    y.Principal -= decimal.Round(roundingloss , 2 , MidpointRounding.AwayFromZero);
+                    //y.Principal += Balance;
                     y.Balance -= Balance;
                 }
                 y.PaymentDue = y.Principal + y.Interest;
@@ -105,7 +128,7 @@ namespace LCNetv5.Classes
                 }
                 else
                 {
-                    y.DateDue = temp.AddDays(days);
+                    y.DateDue = temp.AddDays(IncrementByDays);
                     //if (y.DateDue.DayOfWeek == DayOfWeek.Sunday)
                     //{
                     //     y.DateDue = y.DateDue.AddDays(1);
@@ -159,7 +182,7 @@ namespace LCNetv5.Classes
                 {
 
 
-                    if (0 > item.DateDue.AddMonths(3).CompareTo(DateTime.Now))
+                    if (0 > item.DateDue.AddMonths(1).CompareTo(DateTime.Now))
                     {
                         item.status = 3;
                     }

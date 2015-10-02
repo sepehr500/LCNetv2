@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using LCNetv5.Classes;
 
 namespace LCNetv5.Models
 {
@@ -17,8 +18,7 @@ namespace LCNetv5.Models
     {
         Days,
         Months,
-        Weeks,
-        Years
+        Weeks
     }
     public class Loan
     {
@@ -58,5 +58,18 @@ namespace LCNetv5.Models
         {
             return this.Program.getInfo() + " " + this.AmtLoan + " Round " + Round;
         }
+
+
+        public int HowLate()
+        {
+            PaymentPlan x = new PaymentPlan();
+
+            x.CreatePaymentPlan(this);
+            var sum = this.Payments.Sum(z => z.AmtPaid);
+            if (sum != null) x.applyPayments((decimal) sum);
+            return x.Payments.OrderByDescending(y => y.DateDue).First().status;
+        }
     }
+
+
 }

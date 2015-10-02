@@ -49,7 +49,7 @@ namespace LCNetv5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HowFindOut,NumberInHousehold,HomeOwner,PayRent,AmtRent,AmountOfTimeInCommunity,WhereLiveBefore,WhyMove,TransportTypes,FinanceExperience,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] EntryForm entryForm)
+        public ActionResult Create([Bind(Include = "Id,HowFindOut,NumberInHousehold,HomeOwner,PayRent,AmountOfTimeInCommunity,WhereLiveBefore,WhyMove,TransportTypes,FinanceExperience,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] EntryForm entryForm)
         {
             entryForm.UserId = User.Identity.GetUserId();
             entryForm.StartTime = (DateTime) Session["StartTime"];
@@ -86,7 +86,7 @@ namespace LCNetv5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HowFindOut,NumberInHousehold,HomeOwner,PayRent,AmtRent,AmountOfTimeInCommunity,WhereLiveBefore,WhyMove,TransportTypes,FinanceExperience,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] EntryForm entryForm)
+        public ActionResult Edit([Bind(Include = "Id,HowFindOut,NumberInHousehold,HomeOwner,PayRent,AmountOfTimeInCommunity,WhereLiveBefore,WhyMove,TransportTypes,FinanceExperience,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] EntryForm entryForm)
         {
             if (ModelState.IsValid)
             {

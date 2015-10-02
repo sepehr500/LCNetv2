@@ -18,7 +18,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Client.FirstName)
+               Info
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.User.Email)
@@ -47,9 +47,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.LessThan90Days)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FormalSavings)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.InformalSavings)
             </th>
@@ -104,7 +102,15 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Client.FirstName)
+                @try
+                {
+                @item.Loan.getInfo()
+
+                }
+                catch (Exception)
+                {
+  
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.User.Email)
@@ -133,9 +139,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LessThan90Days)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FormalSavings)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.InformalSavings)
             </td>

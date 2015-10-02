@@ -18,8 +18,8 @@ namespace LCNetv5.Controllers
         // GET: StandardForms
         public ActionResult Index()
         {
-            var standardForms = db.StandardForms.Include(s => s.Client).Include(s => s.User);
-            return View(standardForms.ToList());
+            
+            return View(db.StandardForms.ToList());
         }
 
         // GET: StandardForms/Details/5
@@ -40,7 +40,17 @@ namespace LCNetv5.Controllers
         // GET: StandardForms/Create
         public ActionResult Create(int ClientId)
         {
-            Session["clientid"] = ClientId;
+            try
+            {
+            
+            Session["clientid"] =  db.Loans.Where(x => x.Program.Client.Id == ClientId).OrderByDescending(z => z.TransferDate).First() ;
+            ViewBag.HasBuisnes = db.StandardForms.OrderByDescending(x => x.StartTime).First().Business;
+            ViewBag.IsLate = db.Loans.Where(x => x.Program.Client.Id == ClientId).OrderByDescending(z => z.TransferDate).First().HowLate();
+            }
+            catch (Exception)
+            {
+                
+            }
             Session["StartTime"] = DateTime.Now;
             return View();
         }
@@ -50,12 +60,21 @@ namespace LCNetv5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,InterestGood,RepaySchedGood,PriceShock,StepsTaken,AdjustModeOfIncome,BuisnessImped,ChangeBuisnessModel,LessThan90Days,FormalSavings,InformalSavings,CapitalInvest,Freedom,Seasonal,HowSoSeasonal,WhatLargerLoanFor,FamilyDoingWell,ProblemsToChange,HowCanWeHelp,ClientId,UserId,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc")] StandardForm standardForm)
+        public ActionResult Create([Bind(Include = "Id,InterestGood,RepaySchedGood,PriceShock,StepsTaken,AdjustModeOfIncome,BuisnessImped,ChangeBuisnessModel,LessThan90Days,FormalSavings,InformalSavings,CapitalInvest,Freedom,Seasonal,HowSoSeasonal,WhatLargerLoanFor,FamilyDoingWell,ProblemsToChange,HowCanWeHelp,UserId,LoanFor,StartTime,EndTime,Savings,Business,TypeOfWork,Misc,LoanAmt")] StandardForm standardForm)
         {
 
             standardForm.UserId = User.Identity.GetUserId();
             standardForm.StartTime = (DateTime)Session["StartTime"];
-            standardForm.ClientId = (int)Session["clientid"];
+            try
+            {
+             
+            standardForm.LoanId= (int)Session["clientid"];
+
+            }
+            catch (Exception)
+            {
+                
+            }
             standardForm.EndTime = DateTime.Now;
             if (ModelState.IsValid)
             {

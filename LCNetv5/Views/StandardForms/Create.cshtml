@@ -37,8 +37,15 @@
                     </div>
                 </div>
             </div>
-    
             <div class="form-group">
+                @Html.LabelFor(model => model.LoanAmt, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.LoanAmt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LoanAmt, "", new { @class = "text-danger" })
+                </div>
+        </div>
+            @if( ViewBag.IsLate > 1){
+        <div class="form-group">
                 @Html.LabelFor(model => model.PriceShock, htmlAttributes: new { @class = "control-label" })
                 <div>
                     <div class="checkbox">
@@ -95,16 +102,8 @@
                     </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.FormalSavings, htmlAttributes: new { @class = "control-label " })
-                <div>
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.FormalSavings)
-                        @Html.ValidationMessageFor(model => model.FormalSavings, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
+   } 
+           
     
             <div class="form-group">
                 @Html.LabelFor(model => model.InformalSavings, htmlAttributes: new { @class = "control-label " })
@@ -135,7 +134,7 @@
                     </div>
                 </div>
             </div>
-    
+    @if (ViewBag.HasBuisnes){
             <div class="form-group">
                 @Html.LabelFor(model => model.Seasonal, htmlAttributes: new { @class = "control-label" })
                 <div>
@@ -171,7 +170,7 @@
                     </div>
                 </div>
             </div>
-    
+    }
             <div class="form-group">
                 @Html.LabelFor(model => model.ProblemsToChange, htmlAttributes: new { @class = "control-label" })
                 <div>
@@ -237,8 +236,12 @@
                     @Html.ValidationMessageFor(model => model.Misc, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
-            <div class="form-group">
+
+
+
+
+
+        <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
@@ -246,8 +249,6 @@
         </div>
     }
     
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+  
 </body>
 </html>

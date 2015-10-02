@@ -1,0 +1,18 @@
+namespace LCNetv5.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class RemovedRentAmount : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.EntryForms", "AmtRent");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.EntryForms", "AmtRent", c => c.Int());
+        }
+    }
+}

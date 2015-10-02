@@ -28,17 +28,21 @@ namespace LCNetv5.Models
 
     public class EntryForm : FormHeading
     {
+
+
+        public int ClientId { get; set; }
+        public virtual Client Client { get; set; }
+
+
         [Display(Name = "How did the client find out about LC? ¿Comó llegó usted a conocer la organización?")]
         public HowFind HowFindOut { get; set; }
-        [Display(Name = "Can you give me some information about your home and the people who live with you? ¿Me puede darinformación acerca de su hogar y las personas que viven con usted?")]
+        [Display(Name = "Can you give me info about the number of people who live with you? ¿Me puede darinformación acerca de su hogar y las personas que viven con usted?")]
         public int NumberInHousehold { get; set; }
 
         [Display(Name = "Are you the owner of the home?¿Usted es dueño/a de sucasa? ")]
         public bool HomeOwner { get; set; }
         [Display(Name = "Do you pay rent? ¿Paga renta en su casa?")]
         public bool  PayRent { get; set; }
-        [Display(Name = "How much per month?¿Cuánto paga en la renta por mes? ")]
-        public int? AmtRent   { get; set; }
 
 
         [Display(Name = "How long have you lived in the community? ¿Cuánto tiempo ha vivido en la comunidad?")]
@@ -50,7 +54,7 @@ namespace LCNetv5.Models
         public string WhyMove { get; set; }
         [Display(Name = "What type of transportation do you use? ¿Que tipo de transportación usa? (Ej: autobus, bicicleta,moto, etc.)")]
         public TransportTypes TransportTypes  { get; set; }
-        [Display(Name = "Do you have experieince with a bank")]
+        [Display(Name = "Do you have experieince with a bank? ¿Tienes experiencia con los bancos? (ej. un prestamo con un banco)  ")]
         public bool FinanceExperience { get; set; }
 
 

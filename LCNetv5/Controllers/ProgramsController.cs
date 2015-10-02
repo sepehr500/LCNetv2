@@ -10,6 +10,7 @@ using LCNetv5.Models;
 
 namespace LCNetv5.Controllers
 {
+    [Authorize(Roles = "Admin,Loans")]
     public class ProgramsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

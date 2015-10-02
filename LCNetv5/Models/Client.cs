@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using LCNetv5.Classes;
 
 namespace LCNetv5.Models
 {
@@ -50,6 +51,11 @@ namespace LCNetv5.Models
         [Display(Name = "Legacy Score(%)")]
         public Nullable<int> LegacyScore { get; set; }
         public Status Status { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Narrative { get; set; }
 
         public virtual ICollection<Program> Programs { get; set; }
         public virtual ICollection<EntryForm> EntryForms { get; set; } 
@@ -156,6 +162,8 @@ namespace LCNetv5.Models
             return ((float)this.getNum() / (float)this.getPaymentCount());
 
         }
+
+
 
     }
 }
