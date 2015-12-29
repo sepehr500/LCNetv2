@@ -49,7 +49,9 @@ namespace LCNetv5.Controllers
             }
             catch (Exception)
             {
-                
+                ViewBag.HasBuisnes = true;
+                ViewBag.IsLate = 2;
+
             }
             Session["StartTime"] = DateTime.Now;
             return View();

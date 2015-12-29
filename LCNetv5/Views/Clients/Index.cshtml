@@ -4,6 +4,12 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .hiddenRow {
+    padding: 0 !important;
+}
+
+</style>
 
 <h2>Index</h2>
 
@@ -40,11 +46,22 @@
         </tr>
 
         <tbody class="list">
+            @{
+                int i = 0;
+            }
             @foreach (var item in Model)
             {
+
+
+
+
                 <tr>
-                    <td class="name">
+                    <td data-toggle="collapse" data-target="#demo_@i" class="accordion-toggle name"  onclick='document.getElementById("ProgFrame_@i").src="/Programs/Index/@item.Id";'>
                         @item.getFullName()
+                        @if (item.BirthDay != null && item.BirthDay.Value.Month == DateTime.Now.Month)
+                        {
+                            <i class="glyphicon glyphicon-gift"></i>
+                        }
                     </td>
                     <td class="status">
                         @Html.DisplayFor(modelItem => item.Status)
@@ -63,7 +80,34 @@
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
                         @Html.ActionLink("L.L", "IndPayment", "Payments", new { id = item.getRecentLoan() }, null)|
                     </td>
+
                 </tr>
+
+                <tr>
+                    <td class="name" style="display:none">
+                        @item.getFullName() .
+                    </td>
+                    <td class="status" style="display:none">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td class="score" style="display:none">
+                        @item.getCScore()
+                    </td>
+                    <td class="CCenter" style="display:none">
+                        @item.Center.
+                    </td>
+                    @*<td colspan="12" class="hiddenRow">
+                        <div class="accordian-body collapse" id="demo_@i">
+                            <iframe id="ProgFrame_@i" class="ProgramFrame"  width="100%" style="height: 50em;"></iframe>
+                        </div>
+                    </td>*@
+                </tr>
+
+                
+                i++;
+               
+
+
             }
         </tbody>
 
@@ -72,8 +116,15 @@
 <script src="http://listjs.com/no-cdn/list.js"></script>
 <script src="http://listjs.com/no-cdn/list.fuzzysearch.js"></script>
 <script>
+    //Remove the navbar
+    $(".ProgramFrame").load(function() {
+        $(".ProgramFrame").contents().find(".navbar").hide();
+    });
+    //set up list searching
     var monkeyList = new List('client-list', {
         valueNames: ['name', 'status', 'score','CCenter'],
         plugins: [ListFuzzySearch()]
     });
 </script>
+
+

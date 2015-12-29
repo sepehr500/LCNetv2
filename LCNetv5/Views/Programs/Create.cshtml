@@ -23,13 +23,21 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ClientId, "ClientId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ClientId", null, htmlAttributes: new { @class = "form-control"  })
-                @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+        @if (Model.Id == -1)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClientId, "ClientId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ClientId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <input type="hidden" value=@Model.ClientId name="ClientId"/>
+        }
+        
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

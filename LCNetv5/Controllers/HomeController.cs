@@ -15,11 +15,9 @@ namespace LCNetv5.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            //string AccountSid = "AC31d7b9ac457d5a0c6675be668067de6f";
-            //string AuthToken = "b33a599c894b14f5943216b0b4943b10";
-            //var twilio = new TwilioRestClient(AccountSid, AuthToken);
-            
-            //var message = twilio.SendMessage("+14049947137", "+50432332987" ,"LA CEIBA MFI SENT THIS"); 
+
+
+           
             var UserLog = new List<Log>();
             UserLog.AddRange(db.ClientChanges.ToList());
             UserLog.AddRange(db.PaymentChanges.ToList());

@@ -23,7 +23,7 @@ namespace LCNetv5.Classes
 
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM " + TableName))
+                using (SqlCommand cmd = new SqlCommand("select * from Clients inner join Programs on Clients.Id = Programs.ClientId inner join Loans on Programs.Id = Loans.ProgramId left outer join Payments on Loans.Id = Payments.LoanId"))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter())
                     {
@@ -36,21 +36,41 @@ namespace LCNetv5.Classes
                             //Build the CSV file data as a Comma separated string.
                             string csv = string.Empty;
 
+                            var LastOneInList = dt.Columns[dt.Columns.Count - 1];
                             foreach (DataColumn column in dt.Columns)
                             {
+                                if (column == LastOneInList)
+                                {
+                                csv += column.ColumnName;
+                                    
+                                }
+                                else
+                                {
+                                    
                                 //Add the Header row for CSV file.
                                 csv += column.ColumnName + ',';
+                                }
                             }
 
                             //Add new line.
                             csv += "\r\n";
-
+                            
                             foreach (DataRow row in dt.Rows)
                             {
                                 foreach (DataColumn column in dt.Columns)
                                 {
+                                    var AnotherOneInList = dt.Columns[dt.Columns.Count - 1];
+                                    if (AnotherOneInList == column)
+                                    {
+                                        
+                                    csv += row[column.ColumnName].ToString().Replace(",", ";");
+                                    }
+                                    else
+                                    {
+                                        
                                     //Add the Data rows.
                                     csv += row[column.ColumnName].ToString().Replace(",", ";") + ',';
+                                    }
                                 }
 
                                 //Add new line.

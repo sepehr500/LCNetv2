@@ -54,6 +54,7 @@ namespace LCNetv5.Models
         public string TypeOfWork { get; set; }
 
         [Display(Name = "Write comments here.")]
+        [DataType(DataType.MultilineText)]
         public string Misc { get; set; }
 
 

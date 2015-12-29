@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@if(ViewBag.Program.Id != -1){
+@if( ViewBag.Program.Id != -1 ){
   <h1> @ViewBag.Program.getInfo() </h1>
     <p>
         @Html.ActionLink("Create New", "IndLoanCreate", new { Id = ViewBag.Program.Id })

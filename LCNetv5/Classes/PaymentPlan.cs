@@ -83,18 +83,21 @@ namespace LCNetv5.Classes
                     break;
 
             }
+
             var TotalDays = endDate.Subtract(loan.TransferDate).TotalDays;
-            PDLength = 1/pdlen;
+            //Replace freq with 1 for old
+            PDLength = loan.Frequency /pdlen;
             //Interest Rate per Period
-            //decimal IRPP = (decimal)IR * (decimal)PDLength;
-            decimal IRPP = (decimal)IR / (decimal) pdlen;
+            decimal IRPP = (decimal)IR * (decimal)PDLength;
+            //This was the Old way
+            //decimal IRPP = (decimal)IR / (decimal) pdlen;
             //Calculate EMI
             //decimal EMI = IRPP * loan.AmtLoan / (decimal)(1 - (Math.Pow(1 + (double)IRPP, (double)loan.Instalments * -1)));
             //var R = (loan.InterestRate/12)/100;
             //var n =  (TotalDays/30);
             //decimal EMI = (loan.AmtLoan * (decimal) R * (decimal) (Math.Pow((1 + R), n)) / (decimal) ((Math.Pow((1 + R), n)) - 1));
             //decimal rounded = decimal.Round(EMI , 2);
-             decimal EMI =  (-1 * (decimal) Financial.Pmt((double) PDLength *  IR , loan.Instalments, (double) loan.AmtLoan));
+            decimal EMI =  (-1 * (decimal) Financial.Pmt((double) PDLength *  IR , loan.Instalments, (double) loan.AmtLoan));
             decimal roundingloss = new decimal(0.0);
             var nonroundedEMI = EMI;
             EMI = decimal.Round(EMI, 2);
@@ -115,8 +118,9 @@ namespace LCNetv5.Classes
                 //
                 if (i == loan.Instalments && y.Balance != 0)
                 {
-                    y.Principal -= decimal.Round(roundingloss , 2 , MidpointRounding.AwayFromZero);
-                    //y.Principal += Balance;
+                    //y.Principal -= decimal.Round(roundingloss , 2 , MidpointRounding.AwayFromZero);
+                    //y.Balance -= decimal.Round(roundingloss, 2, MidpointRounding.AwayFromZero);
+                    y.Principal += Balance;
                     y.Balance -= Balance;
                 }
                 y.PaymentDue = y.Principal + y.Interest;
@@ -146,20 +150,23 @@ namespace LCNetv5.Classes
             switch (loan.TimePeriod)
             {
                 case TimePeriod.Months:
-                    this.Often = "Months";
-                    this.Term = (loan.Instalments * loan.Frequency)  + " " + "Months";
+                    this.Often = "Meses";
+                    this.Term = (loan.Instalments * loan.Frequency)  + " " + "Meses";
                     break;
                 case TimePeriod.Days:
 
-                    this.Often= "Days";
-                    this.Term = (loan.Instalments * loan.Frequency) + " " + "Days";
+                    this.Often= "Dias";
+                    this.Term = (loan.Instalments * loan.Frequency) + " " + "Dias";
                     break;
                 case TimePeriod.Weeks:
 
-                    this.Often= "Weeks";
-                    this.Term = (loan.Instalments * loan.Frequency) + " " + "Weeks";
+                    this.Often= "Semanas";
+                    this.Term = (loan.Instalments * loan.Frequency) + " " + "Semanas";
                     break;
+                  
             }
+
+
 
         }
         public void applyPayments(decimal TotalPaid)

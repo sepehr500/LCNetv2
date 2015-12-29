@@ -41,12 +41,12 @@ namespace LCNetv5.Models
 
         public float InterestRate { get; set; }
 
-        [Display(Name = "Repaied every")]
+        [Display(Name = "Repaid Every")]
         public int Frequency { get; set; }
 
         public TimePeriod TimePeriod { get; set; }
 
-        [Display(Name = "Over how many insatllments?")]
+        [Display(Name = "Installments")]
         public int Instalments { get; set; }
 
         public int ProgramId { get; set; }

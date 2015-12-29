@@ -96,14 +96,15 @@ namespace LCNetv5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,AmtLoan,TransferDate,Active,Round,InterestRate,Frequency,Instalments,ProgramId")] Loan loan)
+        public ActionResult Edit([Bind(Include = "Id,AmtLoan,TransferDate,Active,Round,InterestRate,Frequency,Instalments,ProgramId,TimePeriod")] Loan loan)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(loan).State = EntityState.Modified;
+                loan.Program = db.Programs.Find(loan.ProgramId);
                 db.LoanChanges.Add(new LoanChange(loan){ UserId = User.Identity.GetUserId(), ChangeType = Change.Modified});
                 db.SaveChanges();
-                return RedirectToAction("Index", new { Id = loan.Id });
+                return RedirectToAction("Edit", new { Id = loan.Id });
             }
             ViewBag.ProgramId = new SelectList(db.Programs, "Id", "Id", loan.ProgramId);
             return View(loan);
@@ -130,8 +131,8 @@ namespace LCNetv5.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Loan loan = db.Loans.Find(id);
-            db.Loans.Remove(loan);
             db.LoanChanges.Add(new LoanChange(loan){ UserId = User.Identity.GetUserId(), ChangeType = Change.Deleted});
+            db.Loans.Remove(loan);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

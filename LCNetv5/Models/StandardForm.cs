@@ -30,22 +30,22 @@ namespace LCNetv5.Models
 
         //LATE ON REPAYMENT
 
-        [Display(Name = "Was there a sudden change in the price of basic commodities available to the client? ¿Hubo uncambio inesperado en los precios de necesidades básicos, como alimentos, transportación, ropa, etc.?")]
+        [Display(Name = "(If Late) Was there a sudden change in the price of basic commodities available to the client? ¿Hubo uncambio inesperado en los precios de necesidades básicos, como alimentos, transportación, ropa, etc.?")]
         public bool? PriceShock { get; set; }
 
-        [Display(Name = "What steps is the client taking to pay back the loan? ¿Que pasos está tomando para pagar elpréstamo?")]
+        [Display(Name = "(If Late) What steps is the client taking to pay back the loan? ¿Que pasos está tomando para pagar elpréstamo?")]
         public string StepsTaken { get; set; }
 
-        [Display(Name = "Is the client adjusting thier modes of income? ¿Está ajustando sus métodos de ganancia? (buscandotrabajo, pidiendo ayuda de familia o amigos, etc.)")]
+        [Display(Name = "(If Late) Is the client adjusting thier modes of income? ¿Está ajustando sus métodos de ganancia? (buscandotrabajo, pidiendo ayuda de familia o amigos, etc.)")]
         public bool? AdjustModeOfIncome { get; set; }
 
-        [Display(Name = "Are payments late because of buisness impediments? ¿Ha atrasado en sus pagos a causa de su negocio?")]
+        [Display(Name = "(If Late) Are payments late because of buisness impediments? ¿Ha atrasado en sus pagos a causa de su negocio?")]
         public bool? BuisnessImped { get; set; }
 
-        [Display(Name = "Is the client changing their business model? ¿Ha cambiado su modelo de negocio?")]
+        [Display(Name = "(If Late) Is the client changing their business model? ¿Ha cambiado su modelo de negocio?")]
         public bool? ChangeBuisnessModel { get; set; }
 
-        [Display(Name = "Does the client feel that they will be able to repay their loan less than 90 days late? ¿Usted cree queva a poder pagar su préstamo menos de 90 días tarde?")]
+        [Display(Name = "(If Late) Does the client feel that they will be able to repay their loan less than 90 days late? ¿Usted cree queva a poder pagar su préstamo menos de 90 días tarde?")]
         public bool? LessThan90Days { get; set; }
 
         //END
@@ -63,16 +63,16 @@ namespace LCNetv5.Models
         
         //If they have a Business
 
-        [Display(Name = "Does the service and products they provide change depending on season? ¿Cambia los productos/servicios de su negocio segun la temporada?")]
+        [Display(Name = "(If Business) Does the service and products they provide change depending on season? ¿Cambia los productos/servicios de su negocio segun la temporada?")]
         public bool? Seasonal { get; set; }
 
-        [Display(Name = "How so? ¿En que forma cambian los productos/servicios?")]
+        [Display(Name = "(If Business) How so? ¿En que forma cambian los productos/servicios?")]
         public string HowSoSeasonal { get; set; }
 
-        [Display(Name = "For what purpose will you use the next loan?  ¿Para qué cosa utilizará el próximo préstamo?")]
+        [Display(Name = "(If Business) For what purpose will you use the next loan?  ¿Para qué cosa utilizará el próximo préstamo?")]
         public string WhatLargerLoanFor { get; set; }
 
-        [Display(Name = "How is your family doing?¿Como esta su familia? ¿")]
+        [Display(Name = "(If Business) How is your family doing?¿Como esta su familia? ¿")]
         public bool? FamilyDoingWell { get; set; }
 
 

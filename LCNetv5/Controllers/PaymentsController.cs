@@ -95,6 +95,8 @@ namespace LCNetv5.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(payment).State = EntityState.Modified;
+                payment.Loan = db.Loans.Find(payment.LoanId);
+
                 db.PaymentChanges.Add(new PaymentChange(payment) { UserId = User.Identity.GetUserId(), ChangeType = Change.Modified }); 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -178,6 +180,7 @@ namespace LCNetv5.Controllers
         {
             if (ModelState.IsValid)
             {
+                paymentTbl.Loan = db.Loans.Find(paymentTbl.LoanId);
                 db.Payments.Add(paymentTbl);
                 db.PaymentChanges.Add(new PaymentChange (paymentTbl){ UserId = User.Identity.GetUserId(), ChangeType = Change.Created });
                 db.SaveChanges();
@@ -197,7 +200,7 @@ namespace LCNetv5.Controllers
             x.CreatePaymentPlan(loaninfo);
             ViewBag.plan = x;
             ViewBag.EMI = x.Payments.First().PaymentDue;
-
+           
             ViewBag.planDeets = x;
 
             ViewBag.ClientName = loan.Program.Client.getFullName();

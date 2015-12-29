@@ -125,14 +125,14 @@ namespace LCNetv5.Models
             return Num;
         }
         /// <summary>
-        /// Gets the denomenator of the credit score.(The number of payments * 1000)
+        /// Gets the denomenator of the credit score.(The number of payments * 10)
         /// </summary>
         /// <returns>The denomenator</returns>
         private int getPaymentCount()
         {
             using (var db = new ApplicationDbContext())
             {
-                return db.Payments.Where(x => x.Loan.Program.ClientId == Id).ToList().Count() * 1000;
+                return db.Payments.Where(x => x.Loan.Program.ClientId == Id).ToList().Count() * 10;
 
             }
         }
