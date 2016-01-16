@@ -39,16 +39,21 @@ namespace LCNetv5.Classes
                             var LastOneInList = dt.Columns[dt.Columns.Count - 1];
                             foreach (DataColumn column in dt.Columns)
                             {
-                                if (column == LastOneInList)
+                                if (column.ColumnName != "Narrative")
                                 {
-                                csv += column.ColumnName;
-                                    
-                                }
-                                else
-                                {
-                                    
-                                //Add the Header row for CSV file.
-                                csv += column.ColumnName + ',';
+
+
+                                    if (column == LastOneInList)
+                                    {
+                                        csv += column.ColumnName;
+
+                                    }
+                                    else
+                                    {
+
+                                        //Add the Header row for CSV file.
+                                        csv += column.ColumnName + ',';
+                                    }
                                 }
                             }
 
@@ -59,18 +64,22 @@ namespace LCNetv5.Classes
                             {
                                 foreach (DataColumn column in dt.Columns)
                                 {
-                                    var AnotherOneInList = dt.Columns[dt.Columns.Count - 1];
-                                    if (AnotherOneInList == column)
+                                    if (column.ColumnName != "Narrative")
                                     {
-                                        
-                                    csv += row[column.ColumnName].ToString().Replace(",", ";");
+                                        var AnotherOneInList = dt.Columns[dt.Columns.Count - 1];
+                                        if (AnotherOneInList == column)
+                                        {
+
+                                            csv += row[column.ColumnName].ToString().Replace(",", ";");
+                                        }
+                                        else
+                                        {
+
+                                            //Add the Data rows.
+                                            csv += row[column.ColumnName].ToString().Replace(",", ";") + ',';
+                                        } 
                                     }
-                                    else
-                                    {
-                                        
-                                    //Add the Data rows.
-                                    csv += row[column.ColumnName].ToString().Replace(",", ";") + ',';
-                                    }
+                                    
                                 }
 
                                 //Add new line.
